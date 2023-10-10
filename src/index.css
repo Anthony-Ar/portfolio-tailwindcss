@@ -1,13 +1,51 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active-scroll-spy {
+  color: #d71945;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  :root {
+    --color-red: 215 25 69;
+    --color-second-red: 255 0 58;
+    --color-red-darker: 100 30 46;
+
+    --color-background: 34 34 34;
+    --color-background-lighter: 38, 38, 38;
+
+    --color-text: 194 194 194;
+    --color-second-text: 136 136 136;
+    --color-text-darker: 58 58 58;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #262626;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #641e2e;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #222222;
+  }
+}
+
+@layer utilities {
+  .card-clip-polygon {
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%, 0% 50%);
+  }
 }
