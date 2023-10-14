@@ -1,98 +1,60 @@
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { ProjectsCard } from "../components";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 export default function Projects() {
+    const [ref, inView] = useInView({
+        threshold: 1,
+        triggerOnce: true,
+    });
+
+    const [projects, setProjects] = useState([]);
+
+    const fetchProjects = () => {
+        fetch(process.env.PUBLIC_URL + "projects.json")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setProjects(data);
+            });
+    };
+
+    useEffect(() => {
+        fetchProjects();
+    }, []);
+
     return (
-        <section id="projects" className="container m-auto pt-48 px-6">
-            <h2 className="
-                    before:block before:w-full before:h-1.5 before:bg-[#222222] before:absolute before:top-1/2 before:-skew-y-3
-                    text-9xl font-serif font-bold uppercase select-none text-[#3a3a3a] relative w-fit
-                ">
+        <section
+            id="projects"
+            className="container -scroll-mt-24 px-6 pt-12 sm:m-auto xl:pt-48"
+        >
+            <h2
+                ref={ref}
+                className={`
+                    relative w-fit select-none font-serif text-6xl font-bold uppercase text-stone-700 before:absolute before:top-1/2 before:block
+                    before:h-0.5 before:w-full before:-skew-y-3 before:bg-stone-100 dark:text-[var(--color-text-darker)] dark:before:bg-[var(--color-background)] sm:text-8xl sm:before:h-1 md:text-9xl md:before:h-1.5
+                    ${
+                        inView
+                            ? "animate-from_bottom_appear opacity-100"
+                            : "invisible opacity-0"
+                    }
+                `}
+            >
                 Projets
             </h2>
-            <section className="pt-16">
-                <div className="grid grid-cols-4 gap-x-12 gap-y-16 md:grid-cols-8 lg:grid-cols-12">
-                    <div className="col-span-4 lg:col-span-6 relative right-6">
-                        <a href="#">
-                            <div className="group flex items-center relative">
-                                <img
-                                    src="./projets/kasa.jpg"
-                                    alt="Kasa"
-                                    className="group-hover:brightness-75 w-48 h-48 z-20 relative left-6 shadow-xl brightness-50 duration-300"
-                                />
-                                <div className="
-                                    card-clip-polygon relative p-12 bg-[#262626] max-w-2xl border border-[#641e2e] shadow-xl h-56 flex flex-col justify-between z-10
-                                    ">
-                                    <div>
-                                        <h3 className="text-3xl font-mono text-[#d71945]">Kasa</h3>
-                                        <p className="font-sans text-[#c2c2c2]">Un site de réservation en ligne dédié aux vacances et à l'évasion</p>
-                                    </div>
-                                    <div className="flex gap-6 font-mono text-gray-300/40">
-                                        <span>ReactJS</span>
-                                        <span>SaSS</span>
-                                    </div>
-
-                                </div>
-                                <PlusCircleIcon className="h-8 w-8 absolute bottom-0 right-0 text-[#641e2e] duration-300 group-hover:text-[#ff003a]"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-span-4 lg:col-span-6">
-                        <a href="#">
-                            <div className="group flex items-center relative">
-                                <img
-                                    src="./projets/kasa.jpg"
-                                    alt="Kasa"
-                                    className="group-hover:brightness-75 w-48 h-48 z-20 relative left-6 shadow-xl brightness-50 duration-300"
-                                />
-                                <div className="
-                                    card-clip-polygon relative p-12 bg-[#262626] max-w-2xl border border-[#641e2e] shadow-xl h-56 flex flex-col justify-between z-10
-                                    ">
-                                    <div>
-                                        <h3 className="text-3xl font-mono text-[#d71945]">Kasa</h3>
-                                        <p className="font-sans text-[#c2c2c2]">Un site de réservation en ligne dédié aux vacances et à l'évasion</p>
-                                    </div>
-                                    <div className="flex gap-6 font-mono text-gray-300/40">
-                                        <span>ReactJS</span>
-                                        <span>SaSS</span>
-                                    </div>
-
-                                </div>
-                                <PlusCircleIcon className="h-8 w-8 absolute bottom-0 right-0 text-[#641e2e] duration-300 group-hover:text-[#ff003a]"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-span-4 lg:col-span-6 relative right-6">
-                        <a href="#">
-                            <div className="group flex items-center relative">
-                                <img
-                                    src="./projets/kasa.jpg"
-                                    alt="Kasa"
-                                    className="group-hover:brightness-75 w-48 h-48 z-20 relative left-6 shadow-xl brightness-50 duration-300"
-                                />
-                                <div className="
-                                    card-clip-polygon relative p-12 bg-[#262626] max-w-2xl border border-[#641e2e] shadow-xl h-56 flex flex-col justify-between z-10
-                                    ">
-                                    <div>
-                                        <h3 className="text-3xl font-mono text-[#d71945]">Kasa</h3>
-                                        <p className="font-sans text-[#c2c2c2]">Un site de réservation en ligne dédié aux vacances et à l'évasion</p>
-                                    </div>
-                                    <div className="flex gap-6 font-mono text-gray-300/40">
-                                        <span>ReactJS</span>
-                                        <span>SaSS</span>
-                                    </div>
-
-                                </div>
-                                <PlusCircleIcon className="h-8 w-8 absolute bottom-0 right-0 text-[#641e2e] duration-300 group-hover:text-[#ff003a]"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="col-span-4 lg:col-span-6">
-                        <ProjectsCard />
-                    </div>
+            <div className="px-6 pt-16 md:px-0">
+                <div className="grid grid-cols-4 gap-4 lg:grid-cols-8 lg:gap-x-12 lg:gap-y-16 xl:grid-cols-12">
+                    {projects.map((project) => (
+                        <div
+                            className="col-span-4 lg:col-span-8 xl:col-span-6 xl:odd:relative xl:odd:right-6"
+                            key={project.id}
+                        >
+                            <ProjectsCard data={project} />
+                        </div>
+                    ))}
                 </div>
-
-            </section>
+            </div>
         </section>
-    )
+    );
 }

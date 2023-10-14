@@ -1,29 +1,57 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useInView } from "react-intersection-observer";
+import Modal from "./Modal";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 
-export default function ProjectsCard() {
+export default function ProjectsCard(props) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [ref, inView] = useInView({
+        threshold: 1,
+        triggerOnce: true,
+    });
+
     return (
-        <a href="#">
-            <div className="group flex items-center relative">
-                <img
-                    src="./projets/kasa.jpg"
-                    alt="Kasa"
-                    className="group-hover:brightness-75 w-48 h-48 z-20 relative left-6 shadow-xl brightness-50 duration-300"
-                />
-                <div className="
-                                    card-clip-polygon relative p-12 bg-[#262626] max-w-2xl border border-[#641e2e] group-hover:border-[#ff003a] duration-300 shadow-xl h-56 flex flex-col justify-between z-10
-                                    ">
-                    <div>
-                        <h3 className="text-3xl font-mono text-[#d71945]">Kasa</h3>
-                        <p className="font-sans text-[#c2c2c2]">Un site de réservation en ligne dédié aux vacances et à l'évasion</p>
-                    </div>
-                    <div className="flex gap-6 font-mono text-gray-300/40">
-                        <span>ReactJS</span>
-                        <span>SaSS</span>
-                    </div>
+        <div
+            ref={ref}
+            className={`group relative flex flex-col items-center hover:cursor-pointer md:flex-row ${
+                inView ? "animate-from_right_appear" : "invisible opacity-0"
+            }`}
+            onClick={() => setIsOpen(true)}
+        >
+            {isOpen &&
+                createPortal(
+                    <Modal
+                        onClose={() => setIsOpen(false)}
+                        data={props.data}
+                    />,
+                    document.body,
+                )}
 
+            <img
+                src={props.data.cover}
+                alt="Kasa"
+                className="relative top-6 z-20 h-48 w-48 shadow-xl brightness-100 duration-300 group-hover:brightness-100 dark:brightness-50 dark:group-hover:brightness-75 md:left-6 md:top-0 md:brightness-75"
+            />
+            <div className="card-clip-polygon relative z-10 flex h-auto w-full flex-col justify-between border bg-stone-700 p-12 shadow-xl duration-300 group-hover:border-[var(--color-red)] dark:border-[var(--color-red-darker)] dark:bg-[var(--color-background-lighter)] md:h-56 xl:max-w-2xl">
+                <div>
+                    <h3 className="font-mono text-3xl text-[var(--color-red)]">
+                        {props.data.title}
+                    </h3>
+                    <p className="font-sans text-[var(--color-text)]">
+                        {props.data.description}
+                    </p>
                 </div>
-                <PlusCircleIcon className="h-8 w-8 absolute bottom-0 right-0 text-[#641e2e] duration-300 group-hover:text-[#ff003a]"/>
+                <div className="mt-2 flex flex-col font-mono text-gray-300/40 md:mt-0 md:flex-row md:gap-6">
+                    {props.data.tags.map((tag) => (
+                        <span key={tag}>{tag}</span>
+                    ))}
+                </div>
             </div>
-        </a>
-    )
+            <PlusCircleIcon
+                className="absolute -right-2 bottom-0 h-8 w-8 text-[var(--color-red-darker)] duration-300 group-hover:text-[var(--color-red)] md:right-0"
+                alt="Afficher plus"
+            />
+        </div>
+    );
 }

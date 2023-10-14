@@ -1,0 +1,79 @@
+[
+  {
+    "id": "0",
+    "title": "Kasa",
+    "cover": "./projets/kasa.jpg",
+    "pictures": {
+      "desktop": "./projets/kasa_desktop.png",
+      "mobile": "./projets/kasa.jpg"
+    },
+    "description": "Un site de réservation en ligne dédié aux vacances et à l'évasion.",
+    "text": "<p>Projet réalisé au cours de ma formation Intégrateur web chez Openclassrooms, le but était de <span>créer un site responsive permettant poster des offres d'hébergements</span>.</p><p>Le site est entièrement compatible sur mobile, tablette et pc. Il est développé principalement avec React.</p>",
+    "tags": [
+      "ReactJS",
+      "SaSS"
+    ],
+    "external_links": {
+      "github": "",
+      "live": ""
+    }
+  },
+  {
+    "id": "1",
+    "title": "Nina Carducci",
+    "cover": "./projets/nina.png",
+    "pictures": {
+      "desktop": "./projets/nina_desktop.jpg",
+      "mobile": "./projets/nina_mobile.jpg"
+    },
+    "description": "Portfolio à l'image d'une artiste photographe créative et haute en couleur",
+    "text": "blablabla",
+    "tags": [
+      "Optimisations",
+      "Référencement"
+    ],
+    "external_links": {
+      "github": "",
+      "live": ""
+    }
+  },
+
+  {
+    "id": "2",
+    "title": "Lorem ipsum",
+    "cover": "./projets/projets.jpg",
+    "pictures": {
+      "desktop": "./projets/nina_desktop.jpg",
+      "mobile": "./projets/nina_mobile.jpg"
+    },
+    "description": "Portfolio à l'image d'une artiste photographe créative et haute en couleur",
+    "text": "blablabla",
+    "tags": [
+      "Javascript",
+      "Référencement"
+    ],
+    "external_links": {
+      "github": "",
+      "live": ""
+    }
+  },
+  {
+    "id": "3",
+    "title": "Lorem ipsum",
+    "cover": "./projets/projets.jpg",
+    "pictures": {
+      "desktop": "./projets/nina_desktop.jpg",
+      "mobile": "./projets/nina_mobile.jpg"
+    },
+    "description": "Portfolio à l'image d'une artiste photographe créative et haute en couleur",
+    "text": "blablabla",
+    "tags": [
+      "Javascript",
+      "Référencement"
+    ],
+    "external_links": {
+      "github": "",
+      "live": ""
+    }
+  }
+]

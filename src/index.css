@@ -1,51 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.active-scroll-spy {
-  color: #d71945;
-}
-
 @layer base {
-  :root {
-    --color-red: 215 25 69;
-    --color-second-red: 255 0 58;
-    --color-red-darker: 100 30 46;
+    html {
+        scroll-margin-bottom: 200px;
+        scroll-behavior: smooth;
+    }
 
-    --color-background: 34 34 34;
-    --color-background-lighter: 38, 38, 38;
+    :root {
+        --color-red: rgb(215 25 69);
+        --color-second-red: rgb(255 0 58);
+        --color-red-darker: rgb(100 30 46);
 
-    --color-text: 194 194 194;
-    --color-second-text: 136 136 136;
-    --color-text-darker: 58 58 58;
-  }
+        --color-background: rgb(34 34 34);
+        --color-light-background: rgb(68, 68, 68);
+        --color-background-lighter: rgb(38, 38, 38);
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
+        --color-text: rgb(194 194 194);
+        --color-second-text: rgb(136 136 136);
+        --color-text-darker: rgb(58 58 58);
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: #3a3a3a;
-  }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
 
-  ::-webkit-scrollbar-track {
-    background: #262626;
-  }
+    ::-webkit-scrollbar-thumb {
+        background: #3a3a3a;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #641e2e;
-  }
+    ::-webkit-scrollbar-track {
+        background: #262626;
+    }
 
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #222222;
-  }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #641e2e;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        @apply bg-stone-100 dark:bg-[var(--color-background)];
+    }
 }
 
 @layer utilities {
-  .card-clip-polygon {
-    clip-path: polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%, 0% 50%);
-  }
+    .card-clip-polygon {
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%, 0% 50%);
+    }
 }
