@@ -8,13 +8,13 @@
       "mobile": "./projets/kasa.jpg"
     },
     "description": "Un site de réservation en ligne dédié aux vacances et à l'évasion.",
-    "text": "<p>Projet réalisé au cours de ma formation Intégrateur web chez Openclassrooms, le but était de <span>créer un site responsive permettant poster des offres d'hébergements</span>.</p><p>Le site est entièrement compatible sur mobile, tablette et pc. Il est développé principalement avec React.</p>",
+    "text": "<p>Projet réalisé au cours de ma formation Intégrateur web chez Openclassrooms, le but était de créer un site responsive permettant poster des offres d'hébergements.</p><p>Le site est entièrement compatible sur mobile, tablette et pc. Il est développé principalement avec React.</p>",
     "tags": [
       "ReactJS",
       "SaSS"
     ],
     "external_links": {
-      "github": "",
+      "github": "http",
       "live": ""
     }
   },

@@ -20,7 +20,7 @@ export default function GitHubCard() {
 
     return (
         <div className="lg:pt-16">
-            <div className="w-full bg-stone-700 dark:border dark:border-l-0 dark:border-r-0 dark:border-[var(--color-red-darker)] dark:bg-[var(--color-background-lighter)] 2xl:max-w-2xl dark:2xl:border-r">
+            <div className="w-full bg-stone-700 shadow-xl dark:border dark:border-l-0 dark:border-r-0 dark:border-[var(--color-red-darker)] dark:bg-[var(--color-background-lighter)] dark:shadow-none 2xl:max-w-2xl dark:2xl:border-r">
                 <div className="flex flex-col items-center justify-center gap-8 p-6 md:flex-row md:gap-16 2xl:justify-start">
                     <img
                         src={userInfo.avatar_url}

@@ -1,6 +1,6 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useInView } from "react-intersection-observer";
-import Modal from "./Modal";
+import { Modal } from "../components";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -49,7 +49,7 @@ export default function ProjectsCard(props) {
                 </div>
             </div>
             <PlusCircleIcon
-                className="absolute -right-2 bottom-0 h-8 w-8 text-[var(--color-red-darker)] duration-300 group-hover:text-[var(--color-red)] md:right-0"
+                className="absolute -right-2 bottom-0 h-8 w-8 text-stone-700 duration-300 group-hover:text-[var(--color-red)] dark:text-[var(--color-red-darker)] md:right-0"
                 alt="Afficher plus"
             />
         </div>

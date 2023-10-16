@@ -17,7 +17,7 @@ export default function App() {
 
             {y > 200 && (
                 <div
-                    className="fixed bottom-10 right-5 hidden animate-from_bottom_appear rounded border border-[var(--color-red-darker)] p-2 text-[var(--color-background-lighter)] duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:bg-[var(--color-background-lighter)] dark:text-[var(--color-text)] 2xl:block"
+                    className="fixed bottom-10 right-5 hidden animate-from_bottom_appear rounded border border-stone-700 p-2 text-stone-700 duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:border-[var(--color-red-darker)] dark:bg-[var(--color-background-lighter)] dark:text-[var(--color-text)] 2xl:block"
                     onClick={() =>
                         scrollTo({ left: 0, top: 0, behavior: "smooth" })
                     }

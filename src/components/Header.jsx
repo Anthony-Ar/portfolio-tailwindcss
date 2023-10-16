@@ -24,7 +24,7 @@ export default function Header() {
         <header className="container m-auto flex items-center justify-between p-6">
             <img src={Logo} alt="Logo représentant les initiales AA" />
 
-            <nav>
+            <nav className="hidden sm:block">
                 <ul className="flex gap-6 font-mono text-xl dark:text-[var(--color-text)]">
                     {navLinks.map((link) => (
                         <a href={link.link} key={link.title}>
@@ -39,7 +39,7 @@ export default function Header() {
             <div className="flex items-center gap-2">
                 {colorTheme === "light" ? (
                     <SunIcon
-                        className="h-8 w-8 duration-300 hover:cursor-pointer hover:text-[var(--color-red)] dark:text-[var(--color-text)]"
+                        className="h-8 w-8 duration-300 hover:cursor-pointer dark:text-[var(--color-text)] dark:hover:text-[var(--color-red)]"
                         alt="Appliquer un thème clair"
                         onClick={() => setTheme("light")}
                     />
@@ -59,7 +59,7 @@ export default function Header() {
                     <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
-                        className="h-8 w-8 duration-300 hover:fill-[var(--color-red)] dark:fill-[var(--color-text)]"
+                        className="h-8 w-8 duration-300 hover:fill-[var(--color-red)] dark:fill-[var(--color-text)] dark:hover:fill-[var(--color-red)]"
                     >
                         <path
                             fillRule="evenodd"

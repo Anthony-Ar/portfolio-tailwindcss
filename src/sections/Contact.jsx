@@ -6,6 +6,7 @@ import {
     UserIcon,
 } from "@heroicons/react/24/outline";
 import { useInView } from "react-intersection-observer";
+import { Input } from "../components";
 
 export default function Contact() {
     const [ref, inView] = useInView({
@@ -67,59 +68,47 @@ export default function Contact() {
                     Vous pouvez me contacter par e-mail, sur les réseaux sociaux
                     ou directement depuis le formulaire ci-dessous.
                 </p>
-                <div className="relative my-6">
-                    <input
-                        id="id-l11"
-                        type="text"
-                        name="id-l11"
-                        placeholder="Nom et prénom"
-                        className="peer relative h-12 w-full rounded border border-slate-200 px-4 pl-12 text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                    />
-                    <label
-                        htmlFor="id-l11"
-                        className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+                <form>
+                    <div className="relative my-6">
+                        <Input
+                            name="name"
+                            type="text"
+                            placeholder="Nom et prénom"
+                            icon={UserIcon}
+                        />
+                    </div>
+                    <div className="relative my-6">
+                        <Input
+                            name="email"
+                            type="email"
+                            placeholder="Adresse e-mail"
+                            icon={AtSymbolIcon}
+                        />
+                    </div>
+                    <div className="relative my-6">
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="8"
+                            placeholder="Message"
+                            className="peer relative w-full rounded border border-[var(--color-text)] px-4 pl-12 pt-3 placeholder-transparent outline-none transition-all autofill:bg-[var(--color-background)] invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 dark:bg-[var(--color-background)] dark:text-[var(--color-text)]"
+                        />
+                        <label
+                            htmlFor="message"
+                            className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-[var(--color-text)] transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent dark:before:bg-[var(--color-background)]"
+                        >
+                            Message
+                        </label>
+                        <ChatBubbleOvalLeftEllipsisIcon className="absolute left-4 top-3 h-6 w-6 stroke-slate-400 peer-disabled:cursor-not-allowed" />
+                    </div>
+                    <button
+                        type="submit"
+                        className="m-auto flex w-fit items-center gap-4 border border-[var(--color-red-darker)] bg-stone-900 px-4 py-2 font-mono text-[var(--color-text)] duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:bg-[var(--color-background)]"
                     >
-                        Nom et prénom
-                    </label>
-                    <UserIcon className="absolute left-4 top-3 h-6 w-6 stroke-slate-400 peer-disabled:cursor-not-allowed" />
-                </div>
-                <div className="relative my-6">
-                    <input
-                        id="id-l11"
-                        type="email"
-                        name="id-l11"
-                        placeholder="Adresse e-mail"
-                        className="peer relative h-12 w-full rounded border border-slate-200 px-4 pl-12 text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                    />
-                    <label
-                        htmlFor="id-l11"
-                        className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
-                    >
-                        Adresse e-mail
-                    </label>
-                    <AtSymbolIcon className="absolute left-4 top-3 h-6 w-6 stroke-slate-400 peer-disabled:cursor-not-allowed" />
-                </div>
-
-                <div className="relative my-6">
-                    <textarea
-                        id="id-l11"
-                        name="id-l11"
-                        rows="8"
-                        placeholder="Message"
-                        className="peer relative w-full rounded border border-slate-200 px-4 pl-12 pt-2 text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                    />
-                    <label
-                        htmlFor="id-l11"
-                        className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
-                    >
-                        Message
-                    </label>
-                    <ChatBubbleOvalLeftEllipsisIcon className="absolute left-4 top-3 h-6 w-6 stroke-slate-400 peer-disabled:cursor-not-allowed" />
-                </div>
-                <div className="m-auto flex w-fit items-center gap-4 border border-[var(--color-red-darker)] bg-stone-900 px-4 py-2 font-mono text-[var(--color-text)] duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:bg-[var(--color-background)]">
-                    <PaperAirplaneIcon className="h-5 w-5" />
-                    Envoyer mon message
-                </div>
+                        <PaperAirplaneIcon className="h-5 w-5" />
+                        Envoyer mon message
+                    </button>
+                </form>
             </div>
         </section>
     );
