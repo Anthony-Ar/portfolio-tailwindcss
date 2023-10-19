@@ -38,9 +38,9 @@ export default function ProjectsCard(props) {
                     <h3 className="font-mono text-3xl text-[var(--color-red)]">
                         {props.data.title}
                     </h3>
-                    <p className="font-sans text-[var(--color-text)]">
+                    <div className="font-sans text-[var(--color-text)]">
                         {props.data.description}
-                    </p>
+                    </div>
                 </div>
                 <div className="mt-2 flex flex-col font-mono text-gray-300/40 md:mt-0 md:flex-row md:gap-6">
                     {props.data.tags.map((tag) => (

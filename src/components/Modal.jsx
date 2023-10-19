@@ -59,47 +59,55 @@ export default function Modal({ onClose, data }) {
                                 </div>
 
                                 <div
-                                    className="mt-4 dark:text-[var(--color-text)]"
+                                    className="mt-4 flex flex-col gap-2 dark:text-[var(--color-text)]"
                                     dangerouslySetInnerHTML={text}
                                 />
 
-                                <div className="mt-8 flex items-center justify-center gap-4 dark:text-[var(--color-text)]">
-                                    {data.pictures.desktop !== "" && (
-                                        <span
-                                            className={`flex items-center gap-2 hover:cursor-pointer ${
-                                                preview === "desktop" &&
-                                                "font-bold"
-                                            }`}
-                                            onClick={() =>
-                                                setPreview("desktop")
-                                            }
-                                        >
-                                            <ComputerDesktopIcon className="h-5 w-5" />{" "}
-                                            Aperçu desktop
-                                        </span>
-                                    )}
-                                    {data.pictures.mobile !== "" && (
-                                        <span
-                                            className={`flex items-center gap-2 hover:cursor-pointer ${
-                                                preview === "mobile" &&
-                                                "font-bold"
-                                            }`}
-                                            onClick={() => setPreview("mobile")}
-                                        >
-                                            <DevicePhoneMobileIcon className="h-5 w-5" />{" "}
-                                            Aperçu mobile
-                                        </span>
-                                    )}
-                                </div>
+                                {(data.pictures.desktop !== "" ||
+                                    data.pictures.mobile !== "") && (
+                                    <div className="mt-8 flex items-center justify-center gap-4 dark:text-[var(--color-text)]">
+                                        {data.pictures.desktop !== "" && (
+                                            <span
+                                                className={`flex items-center gap-2 hover:cursor-pointer ${
+                                                    preview === "desktop" &&
+                                                    "font-bold"
+                                                }`}
+                                                onClick={() =>
+                                                    setPreview("desktop")
+                                                }
+                                            >
+                                                <ComputerDesktopIcon className="h-5 w-5" />{" "}
+                                                Aperçu desktop
+                                            </span>
+                                        )}
+                                        {data.pictures.mobile !== "" && (
+                                            <span
+                                                className={`flex items-center gap-2 hover:cursor-pointer ${
+                                                    preview === "mobile" &&
+                                                    "font-bold"
+                                                }`}
+                                                onClick={() =>
+                                                    setPreview("mobile")
+                                                }
+                                            >
+                                                <DevicePhoneMobileIcon className="h-5 w-5" />{" "}
+                                                Aperçu mobile
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
 
-                                <img
-                                    src={
-                                        preview === "desktop"
-                                            ? data.pictures.desktop
-                                            : data.pictures.mobile
-                                    }
-                                    className="m-auto mt-4 max-h-96 rounded border dark:border-none"
-                                />
+                                {(data.pictures.desktop !== "" ||
+                                    data.pictures.mobile !== "") && (
+                                    <img
+                                        src={
+                                            preview === "desktop"
+                                                ? data.pictures.desktop
+                                                : data.pictures.mobile
+                                        }
+                                        className="m-auto mt-4 max-h-96 rounded border dark:border-none"
+                                    />
+                                )}
 
                                 {data.external_links.github !== "" && (
                                     <div className="mt-6 flex justify-center">

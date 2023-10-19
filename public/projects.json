@@ -23,7 +23,7 @@
     "title": "Nina Carducci",
     "cover": "./projets/nina.png",
     "pictures": {
-      "desktop": "./projets/nina_desktop.jpg",
+      "desktop": "",
       "mobile": "./projets/nina_mobile.jpg"
     },
     "description": "Portfolio à l'image d'une artiste photographe créative et haute en couleur",
@@ -37,7 +37,6 @@
       "live": ""
     }
   },
-
   {
     "id": "2",
     "title": "Lorem ipsum",
@@ -62,8 +61,8 @@
     "title": "Lorem ipsum",
     "cover": "./projets/projets.jpg",
     "pictures": {
-      "desktop": "./projets/nina_desktop.jpg",
-      "mobile": "./projets/nina_mobile.jpg"
+      "desktop": "",
+      "mobile": ""
     },
     "description": "Portfolio à l'image d'une artiste photographe créative et haute en couleur",
     "text": "blablabla",

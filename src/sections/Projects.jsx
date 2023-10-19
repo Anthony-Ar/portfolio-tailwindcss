@@ -11,7 +11,7 @@ export default function Projects() {
     const [projects, setProjects] = useState([]);
 
     const fetchProjects = () => {
-        fetch(process.env.PUBLIC_URL + "projects.json")
+        fetch("./projects.json")
             .then((response) => {
                 return response.json();
             })

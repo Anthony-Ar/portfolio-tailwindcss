@@ -7,12 +7,39 @@ import {
 } from "@heroicons/react/24/outline";
 import { useInView } from "react-intersection-observer";
 import { Input } from "../components";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
     const [ref, inView] = useInView({
         threshold: 0.5,
         triggerOnce: true,
     });
+    const [loading, isLoading] = useState(false);
+    const [success, isSuccess] = useState(false);
+    const [error, isError] = useState(false);
+    const FORM = useRef();
+    const SERVICE_ID = "";
+    const TEMPLATE_ID = "";
+    const PUBLIC_KEY = "";
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        isLoading(true);
+        emailjs
+            .sendForm(SERVICE_ID, TEMPLATE_ID, FORM.current, PUBLIC_KEY)
+            .then(
+                (result) => {
+                    isLoading(false);
+                    isSuccess(true);
+                },
+                (error) => {
+                    isLoading(false);
+                    isError(true);
+                },
+            );
+    };
 
     return (
         <section
@@ -68,47 +95,122 @@ export default function Contact() {
                     Vous pouvez me contacter par e-mail, sur les réseaux sociaux
                     ou directement depuis le formulaire ci-dessous.
                 </p>
-                <form>
-                    <div className="relative my-6">
-                        <Input
-                            name="name"
-                            type="text"
-                            placeholder="Nom et prénom"
-                            icon={UserIcon}
-                        />
-                    </div>
-                    <div className="relative my-6">
-                        <Input
-                            name="email"
-                            type="email"
-                            placeholder="Adresse e-mail"
-                            icon={AtSymbolIcon}
-                        />
-                    </div>
-                    <div className="relative my-6">
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="8"
-                            placeholder="Message"
-                            className="peer relative w-full rounded border border-[var(--color-text)] px-4 pl-12 pt-3 placeholder-transparent outline-none transition-all autofill:bg-[var(--color-background)] invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 dark:bg-[var(--color-background)] dark:text-[var(--color-text)]"
-                        />
-                        <label
-                            htmlFor="message"
-                            className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-[var(--color-text)] transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent dark:before:bg-[var(--color-background)]"
+
+                {loading && (
+                    <div className="flex items-center justify-center gap-4">
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-labelledby="title-04a desc-04a"
+                            aria-live="polite"
+                            aria-busy="true"
+                            className="animate h-6 w-6 animate-spin"
                         >
-                            Message
-                        </label>
-                        <ChatBubbleOvalLeftEllipsisIcon className="absolute left-4 top-3 h-6 w-6 stroke-slate-400 peer-disabled:cursor-not-allowed" />
+                            <title id="title-04a">Chargement</title>
+                            <desc id="desc-04a">En cours d'envoi...</desc>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                className="stroke-slate-200"
+                                strokeWidth="4"
+                            />
+                            <path
+                                d="M12 22C14.6522 22 17.1957 20.9464 19.0711 19.0711C20.9464 17.1957 22 14.6522 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2"
+                                className="stroke-red-500"
+                                strokeWidth="4"
+                            />
+                        </svg>
+                        <p className="text-[var(--color-text)]">
+                            Envoi du message en cours...
+                        </p>
                     </div>
-                    <button
-                        type="submit"
-                        className="m-auto flex w-fit items-center gap-4 border border-[var(--color-red-darker)] bg-stone-900 px-4 py-2 font-mono text-[var(--color-text)] duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:bg-[var(--color-background)]"
+                )}
+
+                {success && (
+                    <div
+                        className="w-full rounded border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-500"
+                        role="alert"
                     >
-                        <PaperAirplaneIcon className="h-5 w-5" />
-                        Envoyer mon message
-                    </button>
-                </form>
+                        <p>
+                            <span className="font-bold">
+                                Message envoyé avec succès!
+                            </span>{" "}
+                            J'y répondrais dès que possible...
+                        </p>
+                        <p
+                            onClick={() => isSuccess(false)}
+                            className="mt-2 text-black hover:cursor-pointer hover:underline"
+                        >
+                            Envoyer un autre message
+                        </p>
+                    </div>
+                )}
+
+                {error && (
+                    <div
+                        className="w-full rounded border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-500"
+                        role="alert"
+                    >
+                        <p>
+                            <span className="font-bold">
+                                Une erreur s'est produite!
+                            </span>{" "}
+                            Impossible d'envoyer ce message...
+                        </p>
+                        <p
+                            onClick={() => isError(false)}
+                            className="mt-2 text-black hover:cursor-pointer hover:underline"
+                        >
+                            Tenter d'envoyer un autre message
+                        </p>
+                    </div>
+                )}
+
+                {!loading && !success && !error && (
+                    <form ref={FORM} onSubmit={handleSubmit}>
+                        <div className="relative my-6">
+                            <Input
+                                name="name"
+                                type="text"
+                                placeholder="Nom et prénom"
+                                icon={UserIcon}
+                            />
+                        </div>
+                        <div className="relative my-6">
+                            <Input
+                                name="email"
+                                type="email"
+                                placeholder="Adresse e-mail"
+                                icon={AtSymbolIcon}
+                            />
+                        </div>
+                        <div className="relative my-6">
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="8"
+                                placeholder="Message"
+                                className="peer relative w-full rounded border border-[var(--color-text)] px-4 pl-12 pt-3 placeholder-transparent outline-none transition-all autofill:bg-[var(--color-background)] invalid:border-pink-500 invalid:text-pink-500 focus:border-red-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 dark:bg-[var(--color-background)] dark:text-[var(--color-text)]"
+                            />
+                            <label
+                                htmlFor="message"
+                                className="absolute -top-2 left-2 z-[1] cursor-text px-2 font-sans text-xs text-[var(--color-text)] transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:left-10 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-red-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent dark:before:bg-[var(--color-background)]"
+                            >
+                                Message
+                            </label>
+                            <ChatBubbleOvalLeftEllipsisIcon className="absolute left-4 top-3 h-6 w-6 stroke-[var(--color-text)] peer-disabled:cursor-not-allowed" />
+                        </div>
+                        <button
+                            type="submit"
+                            className="m-auto flex w-fit items-center gap-4 border border-[var(--color-red-darker)] bg-stone-900 px-4 py-2 font-mono text-[var(--color-text)] duration-300 hover:cursor-pointer hover:border-[var(--color-red)] dark:bg-[var(--color-background)]"
+                        >
+                            <PaperAirplaneIcon className="h-5 w-5" />
+                            Envoyer mon message
+                        </button>
+                    </form>
+                )}
             </div>
         </section>
     );
